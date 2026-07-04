@@ -9,8 +9,8 @@
     do {                                                                       \
         cudaError_t err__ = (call);                                            \
         if (err__ != cudaSuccess) {                                            \
-            std::fprintf(stderr, "CUDA error at %s:%d: %s\n", __FILE__,       \
-                         __LINE__, cudaGetErrorString(err__));                \
+            std::fprintf(stderr, "CUDA error at %s:%d: %s\n", __FILE__,        \
+                         __LINE__, cudaGetErrorString(err__));                 \
             return EXIT_FAILURE;                                               \
         }                                                                      \
     } while (0)
