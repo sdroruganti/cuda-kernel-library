@@ -6,7 +6,7 @@ NVCC ?= nvcc
 # sm_100, sm_100a: B200/GB200
 # sm_103, sm_103a: B300/GB300
 # sm_121: GB10/DGX Spark
-ARCH ?= sm_86 # A4500 cubin architecture
+ARCH ?= sm_121
 
 CXXSTD ?= c++17
 OPT ?= -O3 # optimization level for CPU code
