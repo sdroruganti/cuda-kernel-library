@@ -9,8 +9,8 @@
     do {                                                                       \
         cudaError_t err__ = (call);                                            \
         if (err__ != cudaSuccess) {                                            \
-            std::fprintf(stderr, "CUDA error at %s:%d: %s\n", __FILE__,       \
-                         __LINE__, cudaGetErrorString(err__));                \
+            std::fprintf(stderr, "CUDA error at %s:%d: %s\n", __FILE__,        \
+                         __LINE__, cudaGetErrorString(err__));                 \
             return EXIT_FAILURE;                                               \
         }                                                                      \
     } while (0)
@@ -38,7 +38,6 @@ static void print_device_properties(int device_id,
     std::printf("  Max threads/block: %d\n", props.maxThreadsPerBlock);
     std::printf("  Max grid size: %d x %d x %d\n", props.maxGridSize[0],
                 props.maxGridSize[1], props.maxGridSize[2]);
-    std::printf("  Memory clock: %.0f MHz\n", props.memoryClockRate / 1000.0);
     std::printf("  Memory bus width: %d bits\n", props.memoryBusWidth);
 }
 
