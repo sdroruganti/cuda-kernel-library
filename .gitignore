@@ -33,3 +33,5 @@ checkpoints/
 benchmarks/results/*.csv
 benchmarks/results/*.json
 
+Makefile
+
