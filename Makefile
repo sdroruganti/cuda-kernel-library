@@ -15,6 +15,10 @@ NVCCFLAGS := $(OPT) --std=$(CXXSTD) -arch=$(ARCH)
 WARNFLAGS := -Xcompiler -Wall -Xcompiler -Wextra
 
 BUILD_DIR := build
+PROFILE ?= 0
+NSYS ?= nsys
+NSYS_REPORT_DIR ?= reports
+NSYS_FLAGS ?= --stats=true --force-overwrite=true
 
 # Sanity check binary.
 SANITY_BIN := $(BUILD_DIR)/00_sanity/check_cuda.out
@@ -27,7 +31,7 @@ PROGRAMS := $(SANITY_BIN) $(VECTOR_ADD)
 all: $(PROGRAMS)
 
 run: all
-	./$(SANITY_BIN)
+	$(call RUN_CUDA_PROGRAM,sanity,$(SANITY_BIN))
 
 gpu:
 	nvidia-smi
@@ -35,10 +39,15 @@ gpu:
 	nvidia-smi topo -m
 
 sanity: $(SANITY_BIN)
-	./$(SANITY_BIN)
+	$(call RUN_CUDA_PROGRAM,sanity,$(SANITY_BIN))
 
 vector_add: $(VECTOR_ADD)
-	./$(VECTOR_ADD)
+	$(call RUN_CUDA_PROGRAM,vector_add,$(VECTOR_ADD))
+
+define RUN_CUDA_PROGRAM
+	$(if $(filter 1 yes true,$(PROFILE)),@mkdir -p $(NSYS_REPORT_DIR))
+	$(if $(filter 1 yes true,$(PROFILE)),$(NSYS) profile $(NSYS_FLAGS) -o $(NSYS_REPORT_DIR)/$1 ./$2,./$2)
+endef
 
 define CUDA_PROGRAM
 $2: $1
@@ -58,4 +67,6 @@ help:
 	@echo "  make run"
 	@echo "  make sanity"
 	@echo "  make vector_add"
+	@echo "  make vector_add PROFILE=1"
+	@echo "    Optional: NSYS_REPORT_DIR=reports NSYS_FLAGS='--stats=true --force-overwrite=true'"
 	@echo "  make clean"
