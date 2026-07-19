@@ -1,11 +1,12 @@
 #include <stdio.h>
-#include <cuda_runtime_api.h>
+#include <cuda_runtime.h>
 
 #define ROWS 2
 #define COLS 2
 
 __global__ void mat_mul(const int *matrix_a, const int *matrix_b){
 	int value = 0;
+	
 	int row = blockIdx.x;
 	int col = threadIdx.x;
         
@@ -17,6 +18,7 @@ __global__ void mat_mul(const int *matrix_a, const int *matrix_b){
 		value += matrix_a[COLS * row + i] * matrix_b[COLS * i + col];
 	}
 	printf("Block: %d, Thread: %d, Value: %d\n", blockIdx.x, threadIdx.x, value);
+
 
 }
 
@@ -34,6 +36,8 @@ int main(){
 
 	int *device_a = NULL;
 	int *device_b = NULL;
+
+	cudaSetDevice(1);
 
 	cudaMalloc((void **)&device_a, sizeof(matrix_a));
 	cudaMalloc((void **)&device_b, sizeof(matrix_b));
