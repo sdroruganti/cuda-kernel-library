@@ -17,6 +17,7 @@ A collection of CUDA kernels, benchmarks, notes, and PyTorch extensions.
 | `08_histogram` | Histogram (planned) |
 | `09_convolution_1d` | One-dimensional convolution (planned) |
 | `10_tiled_matrix_multiply` | Tiled matrix multiplication (planned) |
+| `11_prefix_sum` | Prefix sum (planned) |
 
 Each example is a standalone CUDA program. Build and run a project with:
 
