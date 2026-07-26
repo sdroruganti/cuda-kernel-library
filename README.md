@@ -18,6 +18,7 @@ A collection of CUDA kernels, benchmarks, notes, and PyTorch extensions.
 | `09_convolution_1d` | One-dimensional convolution (planned) |
 | `10_tiled_matrix_multiply` | Tiled matrix multiplication (planned) |
 | `11_prefix_sum` | Prefix sum (planned) |
+| `12_stream_compaction` | Stream compaction (planned) |
 
 Each example is a standalone CUDA program. Build and run a project with:
 
