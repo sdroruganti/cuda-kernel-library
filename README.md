@@ -19,6 +19,7 @@ A collection of CUDA kernels, benchmarks, notes, and PyTorch extensions.
 | `10_tiled_matrix_multiply` | Tiled matrix multiplication (planned) |
 | `11_prefix_sum` | Prefix sum (planned) |
 | `12_stream_compaction` | Stream compaction (planned) |
+| `13_radix_sort` | Radix sort (planned) |
 
 Each example is a standalone CUDA program. Build and run a project with:
 
